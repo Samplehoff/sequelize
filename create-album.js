@@ -7,14 +7,14 @@ const readline = require('readline').createInterface({
 
 let new_album = [];
 
-readline.question('Album name?', (albumName) =>{
+readline.question('Album name?', (albumName) => {
     console.log(`Album name is: ${albumName}`);
     new_album['albumName'] = albumName;
     
-    readline.question('Album year?', (albumYear) =>{
+    readline.question('Album year?', (albumYear) => {
         console.log(`Album year is: ${albumYear}`);
         new_album['albumYear'] = albumYear;
-        require.close();
+        
     });
     
     readline.question('Artist Id?', (artistId) =>{
