@@ -1,33 +1,32 @@
-
 const models = require('./models');
 const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+  input: process.stdin,
+  output: process.stdout
+})
 
 let new_album = [];
 
-readline.question('Album name?', (albumName) => {
-    console.log(`Album name is: ${albumName}`);
-    new_album['albumName'] = albumName;
-    
-    readline.question('Album year?', (albumYear) => {
-        console.log(`Album year is: ${albumYear}`);
-        new_album['albumYear'] = albumYear;
-        
+readline.question(`Album name?`, (albumName) => {
+  console.log(`album name is: ${albumName}`);
+  new_album['name'] = albumName;
+
+  readline.question(`Album year?`, (albumYear) => {
+    console.log(`album year is: ${albumYear}`);
+    new_album['year'] = albumYear;
+
+    readline.question(`Artist ID?`, (artistId) => {
+      console.log(`Artist ID is: ${artistId}`);
+      new_album['artist_id'] = artistId;
+
+      models.albumName.create({ albumName: new_album['name'], albumYear: new_album['year'], artistId: new_album['artist_id'] })
+        .then(function (albumName) {
+          console.log(albumName);
+        });
+      readline.close();
     });
-    
-    readline.question('Artist Id?', (artistId) =>{
-        console.log(`Artist Id is: ${artistId}`);
-        new_album('artistId') = artistId;
-    });
-    readline.close();
+  });
 });
 
 
 
 
-models.album.create({albumName: new_album['albumName'], albumYear: new_album['albumYear'], artistId: new_album['artistId']})
-.then(function(album){
-    console.log(album);
-})
